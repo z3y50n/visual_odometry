@@ -22,11 +22,11 @@ def process_frame(frame):
 
     matches = frame.match()
     Rt, inliers = est.estimate(matches)
-    frame.pose = Rt# @ frame.prev.pose
+    frame.pose = Rt @ frame.prev.pose
     roll, pitch, yaw = est.euler(frame.pose)
 
     print(frame.pose)
-    #print(roll, pitch, yaw)
+    # print(roll, pitch, yaw)
 
     for match in matches[inliers]:
         cv2.circle(frame.img, match[0], radius=3, color=(0, 255, 0))
